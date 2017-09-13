@@ -57,8 +57,10 @@ You can create your visualization using [`vega.embed`](https://github.com/vega/v
 var opt = {
   mode: "vega-lite",
 };
-vega.embed("#vis-scatter", vlSpec, opt, function(error, result) {
+vega.embed("#vis-scatter", vlSpec, opt).then(function(result) {
   ...
+}).catch(function(err) {
+  console.error(err);
 });
 ```
 
@@ -86,9 +88,11 @@ You can create your tooltip using [`vegaTooltip.vegaLite`](APIs.md#vltooltip). T
 var opt = {
   mode: "vega-lite",
 };
-vega.embed("#vis-scatter", vlSpec, opt, function(error, result) {
+vega.embed(id, vlSpec, opt).then(function(result) {
   // result.view is the Vega View, vlSpec is the original Vega-Lite specification
   vegaTooltip.vegaLite(result.view, vlSpec);
+}).catch(function(err) {
+  console.error(err);
 });
 ```
 
@@ -100,9 +104,11 @@ You can create your tooltip using [`vegaTooltip.vega`](APIs.md#vgtooltip). This 
 var opt = {
   mode: "vega"
 }
-vega.embed(id, vgSpec, opt, function(error, result) {
+vega.embed(id, vlSpec, opt).then(function(result) {
   // result.view is the Vega View
   vegaTooltip.vega(result.view);
+}).catch(function(err) {
+  console.error(err);
 });
 ```
 
